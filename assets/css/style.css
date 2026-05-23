@@ -1,0 +1,829 @@
+:root {
+  --text: #151515;
+  --muted: #5f625d;
+  --line: #e2e4df;
+  --soft: #f3f5ef;
+  --surface: #fff;
+  --accent: #7faa36;
+  --wood: #8b623f;
+  --dark: #243436;
+  --ink: #101817;
+  --shadow: 0 18px 48px rgba(22, 28, 24, 0.12);
+  --shadow-strong: 0 28px 70px rgba(20, 28, 24, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  color: var(--text);
+  background: #f7f8f4;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; }
+
+.pc-break {
+  display: inline;
+}
+
+.container {
+  width: min(1160px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(226, 228, 223, 0.7);
+  box-shadow: 0 8px 26px rgba(20, 28, 24, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.topbar-inner {
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav-toggle,
+.menu-button {
+  display: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-width: 0;
+}
+
+.brand > div {
+  min-width: 0;
+}
+
+.logo-mark {
+  width: 221px;
+  height: 50px;
+  display: block;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.brand-tagline {
+  margin: 0;
+  color: #222;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.brand-name {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 0.98;
+  white-space: nowrap;
+}
+
+.brand-sub {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.header-actions {
+  text-align: right;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.header-actions p {
+  margin: 0 0 7px;
+}
+
+.header-actions strong {
+  font-size: 16px;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.pill {
+  min-width: 174px;
+  border-radius: 999px;
+  background: #eef1eb;
+  color: #222;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.pill:hover {
+  background: #e2e7dc;
+  box-shadow: 0 10px 24px rgba(26, 34, 30, 0.12);
+  transform: translateY(-1px);
+}
+
+.pill[href="#contact"] {
+  background: #ffc622;
+  color: #222;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(90deg, #eef1eb 0%, #eef1eb 50%, #e3eadc 50%, #e3eadc 100%);
+  border-bottom: 1px solid rgba(226, 228, 223, 0.8);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 32px max(24px, calc((100vw - 1160px) / 2)) 32px;
+  z-index: -1;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.92fr) minmax(520px, 1.08fr);
+  align-items: center;
+  gap: 44px;
+  min-height: 420px;
+}
+
+.hero-copy {
+  text-align: center;
+  padding: 54px 0 52px;
+}
+
+.hero-title-block {
+  display: inline-block;
+  text-align: left;
+}
+
+.badge {
+  margin: 0 0 28px;
+  background: var(--dark);
+  color: #fff;
+  display: inline-block;
+  padding: 8px 26px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  box-shadow: 0 12px 28px rgba(36, 46, 44, 0.18);
+}
+
+.hero h1 {
+  margin: 0 0 18px;
+  line-height: 1;
+}
+
+.manga-title-image {
+  display: block;
+  width: min(540px, 100%);
+  height: auto;
+}
+
+.hero-title-block p {
+  margin: 0;
+  padding-left: 1em;
+  text-indent: -1em;
+  font-size: clamp(29px, 3.05vw, 42px);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.hero-art {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+  filter: drop-shadow(0 28px 38px rgba(27, 34, 31, 0.18));
+}
+
+.hero-art img {
+  display: block;
+  width: min(100%, 660px);
+  height: 420px;
+  max-height: none;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0 0 0 34px;
+}
+
+.intro {
+  text-align: center;
+  padding: 76px 0 48px;
+}
+
+.intro h2 {
+  margin: 0 0 6px;
+  font-size: clamp(24px, 3.6vw, 34px);
+  line-height: 1.35;
+  font-weight: 900;
+}
+
+.intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.manga-reader {
+  padding-bottom: 86px;
+}
+
+.manga-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(36, 52, 54, 0.16);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--dark);
+  display: inline-grid;
+  place-items: center;
+  font-size: 28px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 16px 36px rgba(25, 30, 28, 0.14);
+  transform: translateY(-50%);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.manga-nav:hover:not(:disabled) {
+  transform: translateY(calc(-50% - 1px));
+  box-shadow: 0 18px 38px rgba(25, 30, 28, 0.14);
+}
+
+.manga-nav:disabled {
+  cursor: default;
+  opacity: 0.34;
+}
+
+.manga-counter {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.manga-stage {
+  position: relative;
+  width: min(820px, 100%);
+  margin: 0 auto;
+}
+
+.manga-prev {
+  left: 24px;
+}
+
+.manga-next {
+  right: 24px;
+}
+
+.manga-strip {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 70px;
+  padding: 6px 70px 24px;
+  border-radius: 4px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(36, 52, 54, 0.38) transparent;
+}
+
+.manga-strip.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.manga-strip::-webkit-scrollbar {
+  height: 10px;
+}
+
+.manga-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.manga-strip::-webkit-scrollbar-thumb {
+  background: rgba(36, 52, 54, 0.34);
+  border-radius: 999px;
+}
+
+.manga-page {
+  flex: 0 0 min(680px, 100%);
+  min-height: 520px;
+  background: var(--surface);
+  border: 1px solid rgba(226, 228, 223, 0.9);
+  border-radius: 3px;
+  color: #444;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-weight: 700;
+  scroll-snap-align: center;
+  box-shadow: 0 16px 42px rgba(25, 30, 28, 0.08);
+}
+
+.manga-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.cta-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  border: 1px solid rgba(36, 52, 54, 0.16);
+  border-radius: 4px;
+  background: #fff;
+  padding: 44px 48px;
+  margin-bottom: 76px;
+  box-shadow: var(--shadow-strong);
+}
+
+.cta-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 8px;
+  background: linear-gradient(180deg, var(--accent), var(--wood));
+}
+
+.cta-card h3 {
+  margin: 0 0 16px;
+  font-size: 26px;
+  line-height: 1.35;
+}
+
+.cta-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.cta-btn {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  padding: 13px 26px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 12px 28px rgba(28, 38, 36, 0.18);
+}
+
+.contact-band {
+  background: var(--dark);
+  color: #fff;
+  padding: 46px 0 38px;
+}
+
+.contact-band h3 {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 1.4;
+  font-weight: 900;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px;
+}
+
+.contact-box {
+  min-height: 124px;
+  background: #fff;
+  border-radius: 6px;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 18px;
+  text-align: center;
+}
+
+.contact-box p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.contact-box strong {
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.contact-box a {
+  min-width: 230px;
+  border-radius: 999px;
+  background: #ffc622;
+  color: #222;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.site-footer {
+  background: #fff;
+  color: #222;
+}
+
+.footer-main {
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: start;
+  gap: 42px;
+  padding: 32px 0;
+}
+
+.footer-logo {
+  width: 260px;
+  height: auto;
+  display: block;
+}
+
+.footer-info p {
+  margin: 0;
+}
+
+.footer-lead {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.footer-company {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.footer-address {
+  margin-top: 14px !important;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.footer-address span {
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.footer-copy {
+  background: var(--dark);
+  color: #fff;
+  min-height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: min(100% - 32px, 560px);
+  }
+
+  .topbar {
+    position: sticky;
+  }
+
+  .topbar-inner {
+    position: relative;
+    min-height: 0;
+    display: block;
+    padding: 18px 0;
+  }
+
+  .brand {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    padding-right: 58px;
+    min-width: 0;
+  }
+
+  .logo-mark {
+    width: min(221px, calc(100vw - 112px));
+    height: auto;
+  }
+
+  .brand-tagline {
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .brand-name {
+    font-size: 28px;
+    line-height: 0.95;
+  }
+
+  .brand-sub {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+
+  .menu-button {
+    position: absolute;
+    top: 17px;
+    right: 0;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(226, 228, 223, 0.95);
+    border-radius: 999px;
+    background: #fff;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(22, 28, 24, 0.1);
+  }
+
+  .menu-button span {
+    width: 22px;
+    height: 2px;
+    border-radius: 999px;
+    background: #222;
+    display: block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .header-actions {
+    display: none;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid #e2e2e2;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 18px 44px rgba(20, 28, 24, 0.16);
+  }
+
+  .nav-toggle:checked ~ .header-actions {
+    display: block;
+  }
+
+  .nav-toggle:checked ~ .menu-button span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .nav-toggle:checked ~ .menu-button span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle:checked ~ .menu-button span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .header-actions p {
+    margin: 0 0 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .header-actions strong {
+    font-size: 22px;
+  }
+
+  .phone-number {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .btn-row {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .pill {
+    min-width: 0;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 18px;
+    font-size: 15px;
+    background: #f1f3ee;
+    font-weight: 700;
+  }
+
+  .pill[href="#contact"] {
+    background: #ffc622;
+    color: #222;
+  }
+
+  .hero {
+    background: linear-gradient(180deg, #f1f4ed 0%, #f1f4ed 62%, #e6ece0 100%);
+  }
+
+  .hero::before {
+    inset: 16px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: 0;
+    padding-top: 36px;
+  }
+
+  .hero-copy {
+    padding: 0 0 24px;
+  }
+
+  .badge {
+    margin-bottom: 26px;
+    padding: 7px 18px;
+    font-size: 17px;
+  }
+
+  .hero h1 {
+    margin-bottom: 18px;
+  }
+
+  .manga-title-image {
+    width: min(100%, 430px);
+  }
+
+  .hero-title-block p {
+    font-size: 28px;
+  }
+
+  .pc-break {
+    display: none;
+  }
+
+  .hero-art img {
+    width: min(100%, 430px);
+    height: 380px;
+    max-height: none;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .intro {
+    padding: 40px 0 28px;
+  }
+
+  .intro h2 {
+    font-size: 23px;
+  }
+
+  .intro p {
+    font-size: 14px;
+  }
+
+  .manga-reader {
+    width: 100%;
+    padding-bottom: 52px;
+  }
+
+  .manga-nav {
+    width: 48px;
+    height: 48px;
+    font-size: 23px;
+  }
+
+  .manga-strip {
+    gap: 18px;
+    scroll-padding-inline: 40px;
+    padding: 4px 40px 20px;
+  }
+
+  .manga-prev {
+    left: 8px;
+  }
+
+  .manga-next {
+    right: 8px;
+  }
+
+  .manga-page {
+    flex-basis: 100%;
+    min-height: auto;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 22px 26px 28px;
+    margin-bottom: 48px;
+  }
+
+  .cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-main {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 30px 0;
+    text-align: left;
+  }
+
+  .footer-logo {
+    width: min(260px, 100%);
+  }
+
+  .footer-address span {
+    display: none;
+  }
+
+}
+
+@media (max-width: 420px) {
+  .logo-mark {
+    width: min(190px, calc(100vw - 104px));
+    height: auto;
+  }
+
+  .brand-tagline {
+    font-size: 11px;
+  }
+
+  .brand-name {
+    font-size: 24px;
+  }
+
+  .brand-sub {
+    font-size: 10px;
+  }
+}
