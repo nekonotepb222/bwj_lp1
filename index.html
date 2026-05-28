@@ -17,16 +17,42 @@
           <img class="logo-mark" src="assets/images/logo.png" alt="" />
           <p class="brand-tagline">&#x9AD8;&#x54C1;&#x8CEA;&#x30FB;&#x9069;&#x6B63;&#x4FA1;&#x683C;&#x306E;&#x4E0D;&#x71C3;&#x30FB;&#x6E96;&#x4E0D;&#x71C3;&#x6728;&#x6750;</p>
         </div>
-        <label class="menu-button" for="nav-toggle" aria-label="menu">
+        <label class="menu-button menu-open" for="nav-toggle" aria-label="menu">
           <span></span>
           <span></span>
           <span></span>
         </label>
         <div class="header-actions">
-          <p>&#x304A;&#x96FB;&#x8A71;&#x3067;&#x306E;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B; <strong class="phone-number">0422-27-6172</strong></p>
+          <label class="menu-button menu-close" for="nav-toggle" aria-label="close menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+          <p class="header-phone">
+            <svg class="header-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.31 1.85.53 2.81.66A2 2 0 0 1 22 16.92Z" />
+            </svg>
+            <span>&#x304A;&#x96FB;&#x8A71;&#x3067;&#x306E;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</span>
+            <strong class="phone-number">0422-27-6172</strong>
+          </p>
           <div class="btn-row">
-            <a class="pill" href="#download">&#x30AB;&#x30BF;&#x30ED;&#x30B0;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;</a>
-            <a class="pill" href="#contact">&#x304A;&#x898B;&#x7A4D;&#x308A;&#x4F9D;&#x983C;&#x30FB;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</a>
+            <a class="pill" href="#download">
+              <svg class="header-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                <path d="M14 2v6h6" />
+                <path d="M8 13h8" />
+                <path d="M8 17h8" />
+              </svg>
+              <span>&#x30AB;&#x30BF;&#x30ED;&#x30B0;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;</span>
+            </a>
+            <a class="pill" href="#contact">
+              <svg class="header-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+                <path d="M8 9h8" />
+                <path d="M8 13h5" />
+              </svg>
+              <span>&#x304A;&#x898B;&#x7A4D;&#x308A;&#x4F9D;&#x983C;&#x30FB;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</span>
+            </a>
           </div>
         </div>
       </div>
@@ -41,7 +67,7 @@
               <h1>
                 <img class="manga-title-image" src="assets/images/manga_title.png" alt="THE &#x4E0D;&#x71C3;&#x6728;&#x6750;" />
               </h1>
-              <p>&#xFF5E;FPWOOD&#x304C;&#x3064;&#x306A;&#x3050;&#x3001;<br class="pc-break" />&#x6B21;&#x4E16;&#x4EE3;&#x3078;&#x306E;&#x7A7A;&#x9593;&#x3065;&#x304F;&#x308A;&#xFF5E;</p>
+              <p>&#xFF5E;<span class="wood-word">FPWOOD</span>&#x304C;&#x3064;&#x306A;&#x3050;&#x3001;<br class="pc-break" />&#x6B21;&#x4E16;&#x4EE3;&#x3078;&#x306E;&#x7A7A;&#x9593;&#x3065;&#x304F;&#x308A;&#xFF5E;</p>
             </div>
           </div>
           <div class="hero-art">
@@ -56,12 +82,8 @@
       </section>
 
       <section class="container manga-reader" aria-label="manga viewer">
-        <p class="manga-counter"><span id="manga-current">1</span> / <span id="manga-total">10</span></p>
-
         <div class="manga-stage">
-          <button class="manga-nav manga-prev" type="button" aria-label="previous page">&larr;</button>
-
-          <div class="manga-strip" tabindex="0">
+          <div class="manga-strip">
             <article class="manga-page" aria-label="page 1">
               <img src="assets/images/scene1.png" alt="manga page 1" />
             </article>
@@ -94,7 +116,6 @@
             </article>
           </div>
 
-          <button class="manga-nav manga-next" type="button" aria-label="next page">&rarr;</button>
         </div>
       </section>
 
@@ -111,15 +132,35 @@
           <div class="contact-grid">
             <div class="contact-box">
               <p>&#x304A;&#x6025;&#x304E;&#x306E;&#x65B9;&#x306F;<br />&#x304A;&#x96FB;&#x8A71;&#x3067;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</p>
-              <strong>0422-27-6172</strong>
+              <strong class="contact-phone">
+                <svg class="contact-icon" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.31 1.85.53 2.81.66A2 2 0 0 1 22 16.92Z" />
+                </svg>
+                <span>0422-27-6172</span>
+              </strong>
             </div>
             <div class="contact-box">
               <p>&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;<br />&#x30E1;&#x30FC;&#x30EB;&#x30FB;FAX&#x304B;&#x3089;</p>
-              <a href="#">&#x304A;&#x898B;&#x7A4D;&#x308A;&#x4F9D;&#x983C;&#x30FB;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</a>
+              <a href="#">
+                <svg class="contact-icon" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+                  <path d="M8 9h8" />
+                  <path d="M8 13h5" />
+                </svg>
+                <span>&#x304A;&#x898B;&#x7A4D;&#x308A;&#x4F9D;&#x983C;&#x30FB;&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</span>
+              </a>
             </div>
             <div class="contact-box">
               <p>&#x4F1A;&#x793E;&#x6848;&#x5185;&#x30FB;<br />&#x5404;&#x7A2E;&#x88FD;&#x54C1;&#x30AB;&#x30BF;&#x30ED;&#x30B0;&#x3092;&#x4E00;&#x62EC;&#x3067;</p>
-              <a href="#">&#x8CC7;&#x6599;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;</a>
+              <a href="#">
+                <svg class="contact-icon" aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M8 13h8" />
+                  <path d="M8 17h8" />
+                </svg>
+                <span>&#x8CC7;&#x6599;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;</span>
+              </a>
             </div>
           </div>
         </div>
@@ -138,87 +179,5 @@
       <div class="footer-copy">&copy; &#x682A;&#x5F0F;&#x4F1A;&#x793E;Bb Wood Japan All Rights Reserved.</div>
     </footer>
 
-    <script>
-      const strip = document.querySelector(".manga-strip");
-      const pages = Array.from(document.querySelectorAll(".manga-page"));
-      const prevButton = document.querySelector(".manga-prev");
-      const nextButton = document.querySelector(".manga-next");
-      const current = document.querySelector("#manga-current");
-      const total = document.querySelector("#manga-total");
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartScrollLeft = 0;
-      let dragStartIndex = 0;
-      let dragDelta = 0;
-
-      total.textContent = pages.length;
-
-      const getActiveIndex = () => {
-        const stripCenter = strip.scrollLeft + strip.clientWidth / 2;
-        return pages.reduce((closestIndex, page, index) => {
-          const pageCenter = page.offsetLeft + page.clientWidth / 2;
-          const closestPage = pages[closestIndex];
-          const closestCenter = closestPage.offsetLeft + closestPage.clientWidth / 2;
-          return Math.abs(pageCenter - stripCenter) < Math.abs(closestCenter - stripCenter)
-            ? index
-            : closestIndex;
-        }, 0);
-      };
-
-      const updateControls = () => {
-        const index = getActiveIndex();
-        current.textContent = index + 1;
-        prevButton.disabled = index === 0;
-        nextButton.disabled = index === pages.length - 1;
-      };
-
-      const scrollToPage = (index) => {
-        pages[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-      };
-
-      const endDrag = (event) => {
-        if (!isDragging) return;
-
-        isDragging = false;
-        strip.classList.remove("is-dragging");
-
-        if (strip.hasPointerCapture(event.pointerId)) {
-          strip.releasePointerCapture(event.pointerId);
-        }
-
-        const pageChangeThreshold = strip.clientWidth * 0.12;
-        const targetIndex =
-          Math.abs(dragDelta) > pageChangeThreshold
-            ? dragStartIndex + (dragDelta < 0 ? 1 : -1)
-            : getActiveIndex();
-
-        scrollToPage(Math.max(0, Math.min(targetIndex, pages.length - 1)));
-      };
-
-      prevButton.addEventListener("click", () => scrollToPage(Math.max(getActiveIndex() - 1, 0)));
-      nextButton.addEventListener("click", () => scrollToPage(Math.min(getActiveIndex() + 1, pages.length - 1)));
-      strip.addEventListener("pointerdown", (event) => {
-        if (!event.isPrimary || event.button > 0) return;
-
-        isDragging = true;
-        dragStartX = event.clientX;
-        dragStartScrollLeft = strip.scrollLeft;
-        dragStartIndex = getActiveIndex();
-        dragDelta = 0;
-        strip.classList.add("is-dragging");
-        strip.setPointerCapture(event.pointerId);
-      });
-      strip.addEventListener("pointermove", (event) => {
-        if (!isDragging) return;
-
-        dragDelta = event.clientX - dragStartX;
-        strip.scrollLeft = dragStartScrollLeft - dragDelta;
-      });
-      strip.addEventListener("pointerup", endDrag);
-      strip.addEventListener("pointercancel", endDrag);
-      strip.addEventListener("scroll", () => window.requestAnimationFrame(updateControls), { passive: true });
-      window.addEventListener("resize", updateControls);
-      updateControls();
-    </script>
   </body>
 </html>

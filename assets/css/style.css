@@ -23,6 +23,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+main {
+  background: #fff;
+}
+
 img { max-width: 100%; }
 
 .pc-break {
@@ -103,12 +107,19 @@ img { max-width: 100%; }
 
 .header-actions {
   text-align: right;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 
 .header-actions p {
   margin: 0 0 7px;
+}
+
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
 }
 
 .header-actions strong {
@@ -125,17 +136,34 @@ img { max-width: 100%; }
   gap: 10px;
 }
 
+.header-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header-phone .header-icon {
+  color: var(--text);
+}
+
 .pill {
   min-width: 174px;
   border-radius: 999px;
-  background: #eef1eb;
-  color: #222;
+  background: var(--dark);
+  color: #fff;
   border: 1px solid transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 7px;
   padding: 8px 18px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
@@ -143,7 +171,7 @@ img { max-width: 100%; }
 }
 
 .pill:hover {
-  background: #e2e7dc;
+  background: #304447;
   box-shadow: 0 10px 24px rgba(26, 34, 30, 0.12);
   transform: translateY(-1px);
 }
@@ -223,6 +251,10 @@ img { max-width: 100%; }
   font-weight: 700;
 }
 
+.wood-word {
+  color: #8b4f22;
+}
+
 .hero-art {
   align-self: stretch;
   display: flex;
@@ -238,130 +270,92 @@ img { max-width: 100%; }
   height: 420px;
   max-height: none;
   object-fit: cover;
-  object-position: center top;
+  object-position: left top;
   border-radius: 0 0 0 34px;
 }
 
 .intro {
+  position: relative;
   text-align: center;
-  padding: 76px 0 48px;
+  padding: 78px 0 52px;
+}
+
+.intro::before {
+  content: "STORY";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 12px;
+  margin: 0 auto 12px;
+  color: #8b4f22;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.intro::after {
+  content: none;
 }
 
 .intro h2 {
-  margin: 0 0 6px;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 10px;
   font-size: clamp(24px, 3.6vw, 34px);
   line-height: 1.35;
   font-weight: 900;
 }
 
+.intro h2::before,
+.intro h2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 58px;
+  height: 1px;
+  background: rgba(139, 79, 34, 0.36);
+}
+
+.intro h2::before {
+  right: calc(100% + 24px);
+}
+
+.intro h2::after {
+  left: calc(100% + 24px);
+}
+
 .intro p {
   margin: 0;
   color: var(--muted);
-  font-size: 17px;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .manga-reader {
+  width: 100%;
+  max-width: none;
+  background: #fff;
   padding-bottom: 86px;
 }
 
-.manga-nav {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: 60px;
-  height: 60px;
-  border: 1px solid rgba(36, 52, 54, 0.16);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--dark);
-  display: inline-grid;
-  place-items: center;
-  font-size: 28px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 16px 36px rgba(25, 30, 28, 0.14);
-  transform: translateY(-50%);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-}
-
-.manga-nav:hover:not(:disabled) {
-  transform: translateY(calc(-50% - 1px));
-  box-shadow: 0 18px 38px rgba(25, 30, 28, 0.14);
-}
-
-.manga-nav:disabled {
-  cursor: default;
-  opacity: 0.34;
-}
-
-.manga-counter {
-  margin: 0 0 18px;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 800;
-  text-align: center;
-}
-
 .manga-stage {
-  position: relative;
-  width: min(820px, 100%);
+  width: min(760px, calc(100% - 56px));
   margin: 0 auto;
 }
 
-.manga-prev {
-  left: 24px;
-}
-
-.manga-next {
-  right: 24px;
-}
-
 .manga-strip {
-  display: flex;
+  display: grid;
   gap: 28px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 70px;
-  padding: 6px 70px 24px;
-  border-radius: 4px;
-  cursor: grab;
-  touch-action: pan-y;
-  user-select: none;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(36, 52, 54, 0.38) transparent;
-}
-
-.manga-strip.is-dragging {
-  cursor: grabbing;
-  scroll-snap-type: none;
-}
-
-.manga-strip::-webkit-scrollbar {
-  height: 10px;
-}
-
-.manga-strip::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.manga-strip::-webkit-scrollbar-thumb {
-  background: rgba(36, 52, 54, 0.34);
-  border-radius: 999px;
 }
 
 .manga-page {
-  flex: 0 0 min(680px, 100%);
-  min-height: 520px;
   background: var(--surface);
   border: 1px solid rgba(226, 228, 223, 0.9);
   border-radius: 3px;
   color: #444;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   font-weight: 700;
-  scroll-snap-align: center;
   box-shadow: 0 16px 42px rgba(25, 30, 28, 0.08);
 }
 
@@ -369,9 +363,6 @@ img { max-width: 100%; }
   display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;
-  pointer-events: none;
-  -webkit-user-drag: none;
 }
 
 .cta-card {
@@ -454,8 +445,8 @@ img { max-width: 100%; }
 }
 
 .contact-box p {
-  margin: 0 0 8px;
-  font-size: 14px;
+  margin: 0 0 16px;
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 500;
 }
@@ -469,6 +460,30 @@ img { max-width: 100%; }
   text-underline-offset: 4px;
 }
 
+.contact-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-phone .contact-icon {
+  width: 28px;
+  height: 28px;
+  text-decoration: none;
+}
+
 .contact-box a {
   min-width: 230px;
   border-radius: 999px;
@@ -477,8 +492,9 @@ img { max-width: 100%; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 9px 20px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   line-height: 1.3;
   text-decoration: none;
@@ -544,6 +560,31 @@ img { max-width: 100%; }
   text-align: center;
 }
 
+@media (min-width: 801px) and (max-width: 1012px) {
+  .topbar-inner {
+    min-height: 118px;
+  }
+
+  .brand {
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    width: fit-content;
+    flex: 0 0 auto;
+    text-align: center;
+  }
+
+  .brand .logo-mark {
+    margin-inline: auto;
+  }
+
+  .brand-tagline {
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (max-width: 800px) {
   .container {
     width: min(100% - 32px, 560px);
@@ -561,16 +602,19 @@ img { max-width: 100%; }
   }
 
   .brand {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     gap: 6px;
     padding-right: 58px;
+    width: fit-content;
     min-width: 0;
+    text-align: center;
   }
 
   .logo-mark {
     width: min(221px, calc(100vw - 112px));
     height: auto;
+    margin-inline: auto;
   }
 
   .brand-tagline {
@@ -591,7 +635,7 @@ img { max-width: 100%; }
 
   .menu-button {
     position: absolute;
-    top: 17px;
+    top: 50%;
     right: 0;
     width: 46px;
     height: 46px;
@@ -606,6 +650,11 @@ img { max-width: 100%; }
     gap: 6px;
     cursor: pointer;
     box-shadow: 0 10px 26px rgba(22, 28, 24, 0.1);
+    transform: translateY(-50%);
+  }
+
+  .menu-close {
+    display: none;
   }
 
   .menu-button span {
@@ -620,6 +669,7 @@ img { max-width: 100%; }
   .header-actions {
     display: none;
     width: 100%;
+    position: relative;
     text-align: left;
     font-size: 15px;
     margin-top: 18px;
@@ -634,15 +684,28 @@ img { max-width: 100%; }
     display: block;
   }
 
-  .nav-toggle:checked ~ .menu-button span:nth-child(1) {
+  .nav-toggle:checked ~ .menu-open {
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .header-actions .menu-close {
+    position: absolute;
+    top: 36px;
+    right: 14px;
+    z-index: 2;
+    display: inline-flex;
+    transform: translateY(-50%);
+  }
+
+  .nav-toggle:checked ~ .header-actions .menu-close span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
 
-  .nav-toggle:checked ~ .menu-button span:nth-child(2) {
+  .nav-toggle:checked ~ .header-actions .menu-close span:nth-child(2) {
     opacity: 0;
   }
 
-  .nav-toggle:checked ~ .menu-button span:nth-child(3) {
+  .nav-toggle:checked ~ .header-actions .menu-close span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
 
@@ -652,12 +715,22 @@ img { max-width: 100%; }
     border-bottom: 1px solid #eee;
   }
 
+  .header-phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-inline: 52px;
+    text-align: center;
+  }
+
   .header-actions strong {
     font-size: 22px;
   }
 
   .phone-number {
-    display: block;
+    display: inline-block;
     margin-top: 4px;
   }
 
@@ -673,7 +746,8 @@ img { max-width: 100%; }
     min-height: 48px;
     padding: 12px 18px;
     font-size: 15px;
-    background: #f1f3ee;
+    background: var(--dark);
+    color: #fff;
     font-weight: 700;
   }
 
@@ -713,31 +787,44 @@ img { max-width: 100%; }
 
   .manga-title-image {
     width: min(100%, 430px);
+    margin-inline: auto;
   }
 
   .hero-title-block p {
     font-size: 28px;
+    text-align: center;
+    padding-left: 0;
+    text-indent: 0;
   }
 
   .pc-break {
-    display: none;
+    display: inline;
   }
 
   .hero-art img {
     width: min(100%, 430px);
-    height: 380px;
+    height: auto;
     max-height: none;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center top;
     border-radius: 24px 24px 0 0;
   }
 
   .intro {
-    padding: 40px 0 28px;
+    padding: 44px 0 32px;
+  }
+
+  .intro::before {
+    margin-bottom: 12px;
   }
 
   .intro h2 {
     font-size: 23px;
+  }
+
+  .intro h2::before,
+  .intro h2::after {
+    display: none;
   }
 
   .intro p {
@@ -749,29 +836,12 @@ img { max-width: 100%; }
     padding-bottom: 52px;
   }
 
-  .manga-nav {
-    width: 48px;
-    height: 48px;
-    font-size: 23px;
+  .manga-stage {
+    width: min(100%, calc(100% - 32px));
   }
 
   .manga-strip {
     gap: 18px;
-    scroll-padding-inline: 40px;
-    padding: 4px 40px 20px;
-  }
-
-  .manga-prev {
-    left: 8px;
-  }
-
-  .manga-next {
-    right: 8px;
-  }
-
-  .manga-page {
-    flex-basis: 100%;
-    min-height: auto;
   }
 
   .contact-grid {
