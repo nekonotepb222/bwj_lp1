@@ -10,6 +10,7 @@
   --ink: #101817;
   --shadow: 0 18px 48px rgba(22, 28, 24, 0.12);
   --shadow-strong: 0 28px 70px rgba(20, 28, 24, 0.18);
+  --manga-page-height: 720px;
 }
 
 * { box-sizing: border-box; }
@@ -365,27 +366,142 @@ img { max-width: 100%; }
   height: auto;
 }
 
+.manga-slideshow-page .manga-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  background: #ffc622;
+  color: #222;
+  display: inline-grid;
+  place-items: center;
+  font-size: 28px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 16px 36px rgba(25, 30, 28, 0.2);
+  transform: translateY(-50%);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.manga-slideshow-page .manga-nav:hover:not(:disabled) {
+  transform: translateY(calc(-50% - 1px));
+  background: #ffd24a;
+  box-shadow: 0 18px 38px rgba(25, 30, 28, 0.24);
+}
+
+.manga-slideshow-page .manga-nav:disabled {
+  cursor: default;
+  opacity: 0.34;
+}
+
+.manga-slideshow-page .manga-counter {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.manga-slideshow-page .manga-stage {
+  position: relative;
+  width: min(820px, 100%);
+}
+
+.manga-slideshow-page .manga-prev {
+  left: 24px;
+}
+
+.manga-slideshow-page .manga-next {
+  right: 24px;
+}
+
+.manga-slideshow-page .manga-strip {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 70px;
+  padding: 6px 70px 24px;
+  border-radius: 4px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(36, 52, 54, 0.38) transparent;
+}
+
+.manga-slideshow-page .manga-strip.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.manga-slideshow-page .manga-strip::-webkit-scrollbar {
+  height: 10px;
+}
+
+.manga-slideshow-page .manga-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.manga-slideshow-page .manga-strip::-webkit-scrollbar-thumb {
+  background: rgba(36, 52, 54, 0.34);
+  border-radius: 999px;
+}
+
+.manga-slideshow-page .manga-page {
+  flex: 0 0 min(680px, calc(var(--manga-page-height) * 0.74), 100%);
+  height: var(--manga-page-height);
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  scroll-snap-align: center;
+}
+
+.manga-slideshow-page .manga-page img {
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
 .cta-card {
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 28px;
   border: 1px solid rgba(36, 52, 54, 0.16);
   border-radius: 4px;
   background: #fff;
   padding: 44px 48px;
   margin-bottom: 76px;
+  text-align: center;
   box-shadow: var(--shadow-strong);
 }
 
-.cta-card::before {
+.cta-card::before,
+.cta-card::after {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
+  top: 0;
+  bottom: 0;
   width: 8px;
   background: linear-gradient(180deg, var(--accent), var(--wood));
+}
+
+.cta-card::before {
+  left: 0;
+}
+
+.cta-card::after {
+  right: 0;
 }
 
 .cta-card h3 {
@@ -844,6 +960,34 @@ img { max-width: 100%; }
     gap: 18px;
   }
 
+  .manga-slideshow-page .manga-stage {
+    width: min(100%, calc(100% - 32px));
+  }
+
+  .manga-slideshow-page .manga-nav {
+    width: 48px;
+    height: 48px;
+    font-size: 23px;
+  }
+
+  .manga-slideshow-page .manga-strip {
+    gap: 18px;
+    scroll-padding-inline: 40px;
+    padding: 4px 40px 20px;
+  }
+
+  .manga-slideshow-page .manga-prev {
+    left: 8px;
+  }
+
+  .manga-slideshow-page .manga-next {
+    right: 8px;
+  }
+
+  .manga-slideshow-page .manga-page {
+    flex-basis: min(100%, calc(var(--manga-page-height) * 0.74));
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 22px;
@@ -851,7 +995,7 @@ img { max-width: 100%; }
 
   .cta-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 28px 22px 26px 28px;
     margin-bottom: 48px;
   }
