@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body>
+  <body class="manga-slideshow-page manga-single-page">
     <header class="topbar">
       <div class="container topbar-inner">
         <input class="nav-toggle" type="checkbox" id="nav-toggle" />
@@ -82,8 +82,12 @@
       </section>
 
       <section class="container manga-reader" aria-label="manga viewer">
+        <p class="manga-counter"><span id="manga-current">1</span> / <span id="manga-total">10</span></p>
+
         <div class="manga-stage">
-          <div class="manga-strip">
+          <button class="manga-nav manga-prev" type="button" aria-label="previous page">&larr;</button>
+
+          <div class="manga-strip" tabindex="0">
             <article class="manga-page" aria-label="page 1">
               <img src="assets/images/scene1.png" alt="manga page 1" />
             </article>
@@ -116,6 +120,7 @@
             </article>
           </div>
 
+          <button class="manga-nav manga-next" type="button" aria-label="next page">&rarr;</button>
         </div>
       </section>
 
@@ -179,5 +184,119 @@
       <div class="footer-copy">&copy; &#x682A;&#x5F0F;&#x4F1A;&#x793E;Bb Wood Japan All Rights Reserved.</div>
     </footer>
 
+    <script>
+      const strip = document.querySelector(".manga-strip");
+      const pages = Array.from(document.querySelectorAll(".manga-page"));
+      const prevButton = document.querySelector(".manga-prev");
+      const nextButton = document.querySelector(".manga-next");
+      const current = document.querySelector("#manga-current");
+      const total = document.querySelector("#manga-total");
+      const topbar = document.querySelector(".topbar");
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartScrollLeft = 0;
+      let dragStartIndex = 0;
+      let dragDelta = 0;
+
+      total.textContent = pages.length;
+
+      const updateMangaPageHeight = () => {
+        const viewportHeight = window.visualViewport?.height || window.innerHeight;
+        const headerHeight = topbar?.offsetHeight || 0;
+        const counterHeight = document.querySelector(".manga-counter")?.offsetHeight || 0;
+        const stripStyle = window.getComputedStyle(strip);
+        const counterStyle = window.getComputedStyle(document.querySelector(".manga-counter"));
+        const stripVerticalSpace =
+          parseFloat(stripStyle.paddingTop) +
+          parseFloat(stripStyle.paddingBottom) +
+          12;
+        const counterSpace =
+          counterHeight +
+          parseFloat(counterStyle.marginTop) +
+          parseFloat(counterStyle.marginBottom);
+        const readerInset = window.matchMedia("(max-width: 800px)").matches ? 18 : 26;
+        const pageHeight = Math.max(
+          240,
+          Math.floor(viewportHeight - headerHeight - counterSpace - stripVerticalSpace - readerInset)
+        );
+
+        document.documentElement.style.setProperty("--manga-page-height", `${pageHeight}px`);
+      };
+
+      const getActiveIndex = () => {
+        const stripCenter = strip.scrollLeft + strip.clientWidth / 2;
+        return pages.reduce((closestIndex, page, index) => {
+          const pageCenter = page.offsetLeft + page.clientWidth / 2;
+          const closestPage = pages[closestIndex];
+          const closestCenter = closestPage.offsetLeft + closestPage.clientWidth / 2;
+          return Math.abs(pageCenter - stripCenter) < Math.abs(closestCenter - stripCenter)
+            ? index
+            : closestIndex;
+        }, 0);
+      };
+
+      const updateControls = () => {
+        const index = getActiveIndex();
+        current.textContent = index + 1;
+        prevButton.disabled = index === 0;
+        nextButton.disabled = index === pages.length - 1;
+      };
+
+      const scrollToPage = (index) => {
+        pages[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      };
+
+      const endDrag = (event) => {
+        if (!isDragging) return;
+
+        isDragging = false;
+        strip.classList.remove("is-dragging");
+
+        if (strip.hasPointerCapture(event.pointerId)) {
+          strip.releasePointerCapture(event.pointerId);
+        }
+
+        const pageChangeThreshold = strip.clientWidth * 0.12;
+        const targetIndex =
+          Math.abs(dragDelta) > pageChangeThreshold
+            ? dragStartIndex + (dragDelta < 0 ? 1 : -1)
+            : getActiveIndex();
+
+        scrollToPage(Math.max(0, Math.min(targetIndex, pages.length - 1)));
+      };
+
+      prevButton.addEventListener("click", () => scrollToPage(Math.max(getActiveIndex() - 1, 0)));
+      nextButton.addEventListener("click", () => scrollToPage(Math.min(getActiveIndex() + 1, pages.length - 1)));
+      strip.addEventListener("pointerdown", (event) => {
+        if (!event.isPrimary || event.button > 0) return;
+
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartScrollLeft = strip.scrollLeft;
+        dragStartIndex = getActiveIndex();
+        dragDelta = 0;
+        strip.classList.add("is-dragging");
+        strip.setPointerCapture(event.pointerId);
+      });
+      strip.addEventListener("pointermove", (event) => {
+        if (!isDragging) return;
+
+        dragDelta = event.clientX - dragStartX;
+        strip.scrollLeft = dragStartScrollLeft - dragDelta;
+      });
+      strip.addEventListener("pointerup", endDrag);
+      strip.addEventListener("pointercancel", endDrag);
+      strip.addEventListener("scroll", () => window.requestAnimationFrame(updateControls), { passive: true });
+      window.addEventListener("resize", () => {
+        updateMangaPageHeight();
+        updateControls();
+      });
+      window.visualViewport?.addEventListener("resize", () => {
+        updateMangaPageHeight();
+        updateControls();
+      });
+      updateMangaPageHeight();
+      updateControls();
+    </script>
   </body>
 </html>
