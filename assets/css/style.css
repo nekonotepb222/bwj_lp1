@@ -453,7 +453,8 @@ img { max-width: 100%; }
 }
 
 .manga-slideshow-page .manga-page img {
-  height: 100%;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -1025,6 +1026,17 @@ img { max-width: 100%; }
 
   .manga-slideshow-page .manga-page {
     flex-basis: var(--manga-page-width);
+  }
+
+  .manga-slideshow-page .manga-page {
+    height: auto;
+    display: block;
+  }
+
+  .manga-slideshow-page .manga-page img {
+    width: 100%;
+    height: auto;
+    max-height: none;
   }
 
   .manga-single-page .manga-strip {
