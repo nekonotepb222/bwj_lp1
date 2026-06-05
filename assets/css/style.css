@@ -453,7 +453,7 @@ img { max-width: 100%; }
 }
 
 .manga-slideshow-page .manga-page img {
-  width: calc(100% - 12px);
+  width: calc(100% - 24px);
   height: calc(100% - 12px);
   max-width: 100%;
   max-height: 100%;
